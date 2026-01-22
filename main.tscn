@@ -1,3 +1,404 @@
-[gd_scene format=3 uid="uid://cdwiwhnut8ajm"]
+[gd_scene load_steps=17 format=3 uid="uid://cdwiwhnut8ajm"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://5ni6rul2dy5a" path="res://sprites/floor/floor_0001.png" id="1_7mycd"]
+[ext_resource type="Texture2D" uid="uid://b00wyc7f2i2be" path="res://free-scrolling-city-backgrounds-pixel-art/1 Backgrounds/1/Night/1.png" id="1_272bh"]
+[ext_resource type="Texture2D" uid="uid://c7odadgwh1rkv" path="res://free-scrolling-city-backgrounds-pixel-art/1 Backgrounds/5/Night/5.png" id="2_5vw27"]
+[ext_resource type="Texture2D" uid="uid://5yl8y5jjghve" path="res://sprites/floor/floor_0002.png" id="2_272bh"]
+[ext_resource type="Texture2D" uid="uid://d2klvmyly6alc" path="res://free-scrolling-city-backgrounds-pixel-art/1 Backgrounds/5/Night/3.png" id="2_kek77"]
+[ext_resource type="Texture2D" uid="uid://osba3ihqihmi" path="res://sprites/floor/floor_0003.png" id="3_5vw27"]
+[ext_resource type="Texture2D" uid="uid://upn3pl4o33p6" path="res://sprites/floor/floor_0004.png" id="4_kek77"]
+[ext_resource type="PackedScene" uid="uid://b2h53ha2q1sca" path="res://player.tscn" id="5_4c57u"]
+[ext_resource type="PackedScene" uid="uid://wup8f48hjoab" path="res://monet.tscn" id="6_efxa6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dg77c"]
+texture = ExtResource("1_7mycd")
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -3.2374563, -8, 8, 8, 8, 8, -2.877739)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -4.13675, 8, -3.956891, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ycdy4"]
+texture = ExtResource("2_272bh")
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -3.2374563, -8, -3.2374563, -8, 8, 8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -3.2374563, -8, 8, 8, 8, 8, -3.2374563)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w48qg"]
+texture = ExtResource("3_5vw27")
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -3.057598, -8, 8, 8, 8, 8, -3.2374563)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -3.2374563, -8, 8, 8, 8, 8, -3.057598)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vivmo"]
+texture = ExtResource("4_kek77")
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, -8, -3.057598, 8, -3.057598, 8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -3.057598, -8, 8, 8, 8, 8, -3.057598)
+
+[sub_resource type="TileSet" id="TileSet_2cqfq"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 3
+sources/0 = SubResource("TileSetAtlasSource_dg77c")
+sources/1 = SubResource("TileSetAtlasSource_ycdy4")
+sources/2 = SubResource("TileSetAtlasSource_w48qg")
+sources/3 = SubResource("TileSetAtlasSource_vivmo")
+
+[sub_resource type="FontVariation" id="FontVariation_4c57u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_efxa6"]
+font = SubResource("FontVariation_4c57u")
+font_size = 18
+font_color = Color(0.5504812, 0.007250344, 0.1531871, 1)
+shadow_size = 7
+shadow_color = Color(0, 0, 0, 0.5764706)
+
+[node name="main" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(532, -189)
+scale = Vector2(2, 2)
+texture = ExtResource("1_272bh")
+
+[node name="Background2" type="Sprite2D" parent="."]
+position = Vector2(1683, -189)
+scale = Vector2(2, 2)
+texture = ExtResource("1_272bh")
+
+[node name="3" type="Sprite2D" parent="."]
+position = Vector2(1686, -187)
+scale = Vector2(2, 2)
+texture = ExtResource("2_kek77")
+
+[node name="5" type="Sprite2D" parent="."]
+position = Vector2(534, -187)
+scale = Vector2(2, 2)
+texture = ExtResource("2_5vw27")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_2cqfq")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 3, 1, 1, 65539, 1, 2, 1, 1, 3, 65537, 1, 4, 3, 1, 5, 65539, 1, 6, 3, 1, 7, 2, 1, 8, 65538, 1, 9, 65539, 1, 10, 1, 1, 11, 65537, 1, 12, 3, 1, 13, 65539, 1, -196592, 0, 1, -196591, 65536, 1, -196590, 3, 1, -196589, 65539, 1, -196588, 1, 1, -196587, 65537, 1, -196586, 3, 1, -196585, 65539, 1, -65513, 3, 1610612737, -131049, 65539, 1610612737, 65559, 3, 1610612737, 23, 65539, 1610612737, 65560, 3, 1, 65561, 65539, 1, 65562, 0, 1, 65563, 65536, 1, 65566, 2, 1, 65567, 65538, 1, 65564, 1, 1, 65565, 65537, 1, 65568, 1, 1, 65569, 65537, 1, 65570, 3, 1, 65571, 65539, 1, 327718, 3, 1, 327719, 65539, 1, 327720, 0, 1, 327721, 65536, 1, 327723, 65539, 1, 327724, 3, 1, 327722, 3, 1, 327725, 65539, 1, 327726, 0, 1, 327727, 65536, 1, 327728, 65536, 1, 327729, 3, 1, 327730, 3, 1, 327731, 65539, 1, 327732, 3, 1, 327733, 65539, 1, 196662, 3, 1, 196663, 65539, 1, 65593, 1, 1, 65594, 65537, 1, -65476, 3, 1, -65475, 65539, 1, -65472, 2, 1, -65471, 65538, 1, -65470, 1, 1, -65469, 65537, 1, 196741, 3, 1, 196742, 65539, 1, 196743, 3, 1, 196744, 65539, 1, 196745, 3, 1, 196746, 65539, 1)
+
+[node name="player" parent="." instance=ExtResource("5_4c57u")]
+position = Vector2(13, 5)
+
+[node name="Monets" type="Node" parent="." groups=["coins"]]
+
+[node name="monet10" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(154, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet47" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(163, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet48" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(172, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet49" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(181, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet50" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(189, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet51" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(198, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet52" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(207, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet69" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(495, 11)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet70" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(504, 11)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet71" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(513, 11)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet72" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(522, 11)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet73" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(530, 11)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet74" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(539, 11)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet75" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(548, 11)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet53" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(216, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet54" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(225, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet55" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(235, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet59" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(154, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet60" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(163, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet61" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(172, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet62" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(181, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet63" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(189, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet64" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(198, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet65" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(207, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet66" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(216, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet67" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(225, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet68" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(235, -10)
+scale = Vector2(0.09999994, 0.09999994)
+
+[node name="monet9" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(144.99998, -10)
+scale = Vector2(0.09999995, 0.09999995)
+
+[node name="monet8" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(137, -10)
+scale = Vector2(0.09999996, 0.09999996)
+
+[node name="monet7" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(129, -10)
+scale = Vector2(0.099999964, 0.099999964)
+
+[node name="monet11" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(120, -10)
+scale = Vector2(0.09999997, 0.09999997)
+
+[node name="monet6" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(111, -10)
+scale = Vector2(0.09999998, 0.09999998)
+
+[node name="monet5" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(102.00001, -10)
+scale = Vector2(0.09999999, 0.09999999)
+
+[node name="monet4" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(94, -10)
+
+[node name="monet" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(85, -10)
+
+[node name="monet12" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(307, -74)
+
+[node name="monet13" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(317, -76)
+
+[node name="monet14" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(326, -76)
+
+[node name="monet16" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(354, -75)
+
+[node name="monet18" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(300, -67)
+
+[node name="monet19" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(294, -59)
+
+[node name="monet20" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(370, -75)
+
+[node name="monet21" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(288, -51)
+
+[node name="monet22" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(416, 11)
+
+[node name="monet24" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(424, 11)
+
+[node name="monet25" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(660, 75.00001)
+
+[node name="monet26" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(652, 75.00001)
+
+[node name="monet27" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(643, 75.00001)
+
+[node name="monet28" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(521, 11)
+
+[node name="monet29" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(485, 11)
+
+[node name="monet30" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(477, 11)
+
+[node name="monet31" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(469, 11)
+
+[node name="monet32" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(433, 11)
+
+[node name="monet33" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(460, 11)
+
+[node name="monet34" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(451, 11)
+
+[node name="monet35" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(442, 11)
+
+[node name="monet76" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(723, 75)
+
+[node name="monet77" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(687, 75)
+
+[node name="monet78" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(714, 75)
+
+[node name="monet79" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(705, 75)
+
+[node name="monet80" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(696, 75)
+
+[node name="monet36" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(769, 75)
+
+[node name="monet37" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(760, 75)
+
+[node name="monet38" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(751, 75)
+
+[node name="monet39" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(742, 75)
+
+[node name="monet40" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(732, 75)
+
+[node name="monet81" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(816, 75)
+
+[node name="monet82" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(807, 75)
+
+[node name="monet83" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(798, 75)
+
+[node name="monet84" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(789, 75)
+
+[node name="monet85" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(779, 75)
+
+[node name="monet86" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(1076, -23.999992)
+
+[node name="monet87" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(1067, -23.999992)
+
+[node name="monet88" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(1058, -23.999992)
+
+[node name="monet89" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(1049, -23.999992)
+
+[node name="monet90" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(1039, -23.999992)
+
+[node name="monet91" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(932, 10.000002)
+
+[node name="monet92" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(923, 10.000002)
+
+[node name="monet93" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(986, -21)
+
+[node name="monet94" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(977, -21)
+
+[node name="monet95" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(967, -21)
+
+[node name="monet96" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(881, 39.999996)
+
+[node name="monet45" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(678, 75.00001)
+
+[node name="monet46" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(669, 75)
+
+[node name="monet15" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(362, -75)
+
+[node name="monet56" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(376, -68)
+
+[node name="monet57" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(381, -61)
+
+[node name="monet58" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(385, -52)
+
+[node name="monet17" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(345, -76)
+
+[node name="monet23" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(336, -76)
+
+[node name="monet2" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(67, -10)
+
+[node name="monet3" parent="Monets" instance=ExtResource("6_efxa6")]
+position = Vector2(76, -10)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 2126.0
+offset_top = -26.0
+offset_right = 2215.0
+text = "Coins: 100"
+label_settings = SubResource("LabelSettings_efxa6")

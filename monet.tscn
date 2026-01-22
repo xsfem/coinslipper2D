@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://wup8f48hjoab"]
+[gd_scene load_steps=34 format=3 uid="uid://wup8f48hjoab"]
 
 [ext_resource type="Texture2D" uid="uid://y3di2dekosel" path="res://monet64x64.png" id="1_3pywc"]
 [ext_resource type="Script" uid="uid://c6kr5vlpbqmrm" path="res://monet.gd" id="1_nghrl"]
@@ -74,6 +74,9 @@ region = Rect2(768, 384, 192, 192)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1e33h")
 }, {
 "duration": 1.0,
@@ -118,9 +121,55 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ciovu")
 }],
-"loop": true,
-"name": &"start",
-"speed": 24.0
+"loop": false,
+"name": &"idle_green",
+"speed": 30.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nghrl"]
+atlas = ExtResource("6_agvyf")
+region = Rect2(0, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh345"]
+atlas = ExtResource("6_agvyf")
+region = Rect2(192, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agvyf"]
+atlas = ExtResource("6_agvyf")
+region = Rect2(384, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ees8x"]
+atlas = ExtResource("6_agvyf")
+region = Rect2(576, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cu4gs"]
+atlas = ExtResource("6_agvyf")
+region = Rect2(768, 576, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ikr5k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nghrl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh345")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agvyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ees8x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cu4gs")
+}],
+"loop": false,
+"name": &"idle_purple",
+"speed": 20.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yj2ob"]
@@ -148,19 +197,26 @@ animations = [{
 "texture": SubResource("AtlasTexture_tj4y2")
 }],
 "loop": true,
-"name": &"start",
-"speed": 5.0
+"name": &"idle_gold",
+"speed": 6.0
 }]
 
 [node name="monet" type="Node2D"]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.1, 0.1)
 script = ExtResource("1_nghrl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_3pywc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Trigger" type="Area2D" parent="."]
+scale = Vector2(0.99999994, 0.99999994)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger"]
+scale = Vector2(1.0000001, 1.0000001)
 shape = SubResource("CircleShape2D_nghrl")
+debug_color = Color(0.8039216, 0.17254902, 0.91764706, 0.49019608)
 
 [node name="RedCrystal" type="PointLight2D" parent="."]
 position = Vector2(-1, 0)
@@ -176,12 +232,20 @@ scale = Vector2(0.4921875, 0.90625)
 texture = ExtResource("3_6p462")
 
 [node name="GreenEffect" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.99999994, 0.99999994)
 sprite_frames = SubResource("SpriteFrames_ees8x")
-animation = &"start"
-frame = 7
-frame_progress = 0.77159894
+animation = &"idle_green"
+speed_scale = 1.5
+
+[node name="PurpleEffect" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.99999964, 0.99999964)
+sprite_frames = SubResource("SpriteFrames_ikr5k")
+animation = &"idle_purple"
 
 [node name="GoldEffect" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.99999994, 0.99999994)
 sprite_frames = SubResource("SpriteFrames_cu4gs")
-animation = &"start"
-frame_progress = 0.301154
+animation = &"idle_gold"
+frame_progress = 0.6831228
+
+[connection signal="body_entered" from="Trigger" to="." method="_on_area_2d_body_entered"]
